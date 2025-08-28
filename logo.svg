@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="DocuHelp">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="16" fill="url(#g)"/>
+  <g fill="#0b1020">
+    <rect x="28" y="32" width="72" height="8" rx="4"/>
+    <rect x="28" y="48" width="60" height="8" rx="4"/>
+    <rect x="28" y="64" width="72" height="8" rx="4"/>
+  </g>
+  <circle cx="96" cy="96" r="16" fill="#0b1020"/>
+  <path d="M96 84a12 12 0 0 0-12 12h6a6 6 0 0 1 12 0h6a12 12 0 0 0-12-12z" fill="#60a5fa"/>
+</svg>
+
+
+
