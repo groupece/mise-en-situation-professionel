@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "DocuHelp Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Register",
+      "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:8000/auth/register", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["auth", "register"]}, "body": {"mode": "raw", "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"test123\"\n}"}}
+    },
+    {
+      "name": "Auth Login",
+      "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:8000/auth/login", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["auth", "login"]}, "body": {"mode": "raw", "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"test123\"\n}"}}
+    },
+    {
+      "name": "Documents Upload",
+      "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "http://localhost:8000/documents", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["documents"]}, "body": {"mode": "formdata", "formdata": [{"key": "file", "type": "file", "src": "sample.pdf"}]}}
+    },
+    {
+      "name": "Documents Ingest",
+      "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "http://localhost:8000/documents/{{doc_id}}/ingest", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["documents", "{{doc_id}}", "ingest"]}}
+    },
+    {
+      "name": "Search",
+      "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "http://localhost:8000/search?q={{q}}&k=3", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["search"], "query": [{"key": "q", "value": "{{q}}"}, {"key": "k", "value": "3"}]}}
+    },
+    {
+      "name": "Answers",
+      "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:8000/answers", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["answers"]}, "body": {"mode": "raw", "raw": "{\n  \"question\": \"Quelle est la procédure ?\"\n}"}}
+    },
+    {
+      "name": "Audits",
+      "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "http://localhost:8000/audits", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["audits"]}}
+    }
+  ],
+  "variable": [
+    {"key": "token", "value": ""},
+    {"key": "doc_id", "value": "1"},
+    {"key": "q", "value": "installation"}
+  ]
+} 
