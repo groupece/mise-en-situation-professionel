@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: DocuHelp Backend API
+  version: 0.1.0
+servers:
+  - url: /backend/public/index.php
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  db:
+                    type: boolean
+                  fts:
+                    type: boolean
+  /api/version:
+    get:
+      summary: Version backend
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+  /api/upload:
+    post:
+      summary: Upload de document PDF/TXT
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  document_id: { type: string }
+                  filename: { type: string }
+                  page_count: { type: integer }
+        "400": { description: Bad Request }
+        "413": { description: Payload Too Large }
+        "415": { description: Unsupported Media Type }
+  /api/docs:
+    get:
+      summary: Liste paginée des documents
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer }
+        - in: query
+          name: limit
+          schema: { type: integer }
+      responses:
+        "200":
+          description: OK
+  /api/docs/{id}:
+    get:
+      summary: Détails d'un document
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: OK }
+        "404": { description: Not Found }
+    delete:
+      summary: Supprime un document
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Deleted }
+        "404": { description: Not Found }
+  /api/search:
+    post:
+      summary: Recherche plein texte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query: { type: string }
+                limit: { type: integer }
+                document_id: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        document_id: { type: string }
+                        page_number: { type: integer }
+                        snippet: { type: string }
+                        score: { type: number }
+                        source:
+                          type: object
+                          properties:
+                            filename: { type: string }
+                            page: { type: integer }
+  /api/chat/session:
+    post:
+      summary: Crée une session de chat
+      responses:
+        "200": { description: OK }
+  /api/chat/session/{id}/messages:
+    get:
+      summary: Récupère les messages d'une session
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: OK }
+  /api/chat/message:
+    post:
+      summary: Ajoute un message utilisateur et renvoie des passages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+                content: { type: string }
+      responses:
+        "200": { description: OK }

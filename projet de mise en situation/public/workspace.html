@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DocuHelp — Espace de travail</title>
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body id="workspacePage">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand-link" href="index.html">
+                <img src="assets/logo.svg" alt="DocuHelp" class="logo" />
+                <h1 class="brand">DocuHelp</h1>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="workspace.html" class="nav-link active">Espace</a>
+                <a href="about.html" class="nav-link">À propos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container grid grid-3">
+        <section class="panel">
+            <h2>Documents</h2>
+            <form id="uploadForm">
+                <input type="file" id="fileInput" accept=".pdf,.txt" multiple />
+                <button class="btn" type="submit">Ajouter</button>
+                <span id="uploadStatus" class="muted"></span>
+            </form>
+            <ul id="docList" class="doc-list"></ul>
+        </section>
+
+        <section class="panel">
+            <h2>Questions / Réponses</h2>
+            <form id="askForm">
+                <textarea id="question" rows="6" placeholder="Posez votre question..."></textarea>
+                <button class="btn primary" type="submit">Rechercher</button>
+            </form>
+            <div id="answerContainer" class="answer"></div>
+            <div>
+                <h3>Sources</h3>
+                <ul id="citationsList" class="citations"></ul>
+            </div>
+        </section>
+
+        <section class="panel chat">
+            <h2>Chat</h2>
+            <div id="chatMessages" class="chat-messages"></div>
+            <form id="chatForm" class="chat-form">
+                <input type="text" id="chatInput" placeholder="Votre message..." autocomplete="off" />
+                <button class="btn primary" type="submit">Envoyer</button>
+                <button class="btn" id="chatClear" type="button">Vider</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <strong>DocuHelp</strong>
+                <div class="muted">Assistant documentaire </div>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html">Accueil</a>
+                <a href="workspace.html" class="active">Espace</a>
+                <a href="about.html">À propos</a>
+               
+                <a href="privacy.html">Confidentialité</a>
+                <a href="legal.html">Mentions légales</a>
+            </nav>
+            <div class="muted">© 2025 </div>
+        </div>
+    </footer>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js" integrity="sha512-0GusQqVh5tC0qL4M1dJbXvjJ6u4Gu1zgh8W4m8L+NnQfSbxpVG3bdz0pTzv4b8xqg+SuiUq9yFzG0gk3b1iQOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="assets/app.js"></script>
+</body>
+</html>
+
+
